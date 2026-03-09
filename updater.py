@@ -1,11 +1,14 @@
 """
 War Map AI-Powered Updater
-Uses Google Gemini API with Google Search grounding to classify every country's conflict status.
+1. Scrapes conflict data from ACLED, CFR, ICG, and news sources
+2. Feeds scraped data to Groq (Llama 3.3 70B) for country classification
+3. Updates conflict_data.json
 Runs daily via GitHub Actions.
 """
 
 import json
 import os
+import re
 import sys
 import time
 from datetime import datetime
@@ -13,18 +16,22 @@ from pathlib import Path
 
 try:
     import requests
+    from bs4 import BeautifulSoup
 except ImportError:
-    os.system(f"{sys.executable} -m pip install requests")
+    os.system(f"{sys.executable} -m pip install requests beautifulsoup4")
     import requests
+    from bs4 import BeautifulSoup
 
 DIR = Path(__file__).parent
 DATA_FILE = DIR / "conflict_data.json"
 LOG_FILE = DIR / "updater.log"
 
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "AIzaSyBeua5xjtDpoNDkfAcWle2UEnsTwZXdmMc")
-GEMINI_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}"
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
+GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 
-# All countries we track (ISO Alpha-3 -> Name)
+HEADERS = {"User-Agent": "WarMapBot/1.0 (conflict-tracker; educational)"}
+
+# All countries
 ALL_COUNTRIES = {
     "AFG": "Afghanistan", "ALB": "Albania", "DZA": "Algeria", "AGO": "Angola",
     "ARG": "Argentina", "ARM": "Armenia", "AUS": "Australia", "AUT": "Austria",
@@ -81,100 +88,201 @@ def log(msg):
         f.write(entry + "\n")
 
 
-def ask_gemini(prompt):
-    """Send a prompt to Gemini API with Google Search grounding."""
-    payload = {
-        "contents": [{"parts": [{"text": prompt}]}],
-        "tools": [{"google_search": {}}],
-        "generationConfig": {
-            "temperature": 0.1,
-            "topP": 0.8,
-            "maxOutputTokens": 8192
-        }
-    }
+# ── Source scrapers ──────────────────────────────────────────────────
 
+def scrape_cfr():
+    """Scrape CFR Global Conflict Tracker."""
     try:
-        resp = requests.post(GEMINI_URL, json=payload, timeout=120)
-        resp.raise_for_status()
-        data = resp.json()
-        # Extract text from response
-        candidates = data.get("candidates", [])
-        if candidates:
-            parts = candidates[0].get("content", {}).get("parts", [])
-            text = ""
-            for part in parts:
-                if "text" in part:
-                    text += part["text"]
-            return text
+        url = "https://www.cfr.org/global-conflict-tracker"
+        resp = requests.get(url, headers=HEADERS, timeout=30)
+        if resp.status_code == 200:
+            soup = BeautifulSoup(resp.text, "html.parser")
+            text = soup.get_text(separator="\n", strip=True)
+            # Extract conflict-related paragraphs
+            lines = [l for l in text.split("\n") if len(l) > 40 and any(
+                kw in l.lower() for kw in ["conflict", "war", "crisis", "violence", "military", "attack", "insurgency"]
+            )]
+            result = "\n".join(lines[:80])
+            log(f"CFR: scraped {len(lines)} relevant lines")
+            return result
     except Exception as e:
-        log(f"Gemini API error: {e}")
-        if hasattr(resp, 'text'):
-            log(f"Response: {resp.text[:500]}")
+        log(f"CFR scrape failed: {e}")
+    return ""
+
+
+def scrape_acled():
+    """Scrape ACLED conflict data/dashboard."""
+    try:
+        url = "https://acleddata.com/conflict-watchlist/"
+        resp = requests.get(url, headers=HEADERS, timeout=30)
+        if resp.status_code == 200:
+            soup = BeautifulSoup(resp.text, "html.parser")
+            text = soup.get_text(separator="\n", strip=True)
+            lines = [l for l in text.split("\n") if len(l) > 40]
+            result = "\n".join(lines[:80])
+            log(f"ACLED: scraped {len(lines)} lines")
+            return result
+    except Exception as e:
+        log(f"ACLED scrape failed: {e}")
+    return ""
+
+
+def scrape_icg():
+    """Scrape International Crisis Group."""
+    try:
+        url = "https://www.crisisgroup.org/crisiswatch"
+        resp = requests.get(url, headers=HEADERS, timeout=30)
+        if resp.status_code == 200:
+            soup = BeautifulSoup(resp.text, "html.parser")
+            text = soup.get_text(separator="\n", strip=True)
+            lines = [l for l in text.split("\n") if len(l) > 40]
+            result = "\n".join(lines[:80])
+            log(f"ICG: scraped {len(lines)} lines")
+            return result
+    except Exception as e:
+        log(f"ICG scrape failed: {e}")
+    return ""
+
+
+def scrape_reuters_conflicts():
+    """Scrape Reuters world news for conflict headlines."""
+    try:
+        url = "https://www.reuters.com/world/"
+        resp = requests.get(url, headers=HEADERS, timeout=30)
+        if resp.status_code == 200:
+            soup = BeautifulSoup(resp.text, "html.parser")
+            headlines = []
+            for tag in soup.find_all(["h2", "h3", "a"]):
+                text = tag.get_text(strip=True)
+                if len(text) > 20 and any(kw in text.lower() for kw in [
+                    "war", "conflict", "attack", "military", "strike", "bomb",
+                    "troops", "invasion", "missile", "ceasefire", "sanctions",
+                    "insurgent", "rebel", "fighting", "killed", "weapons"
+                ]):
+                    headlines.append(text)
+            result = "\n".join(list(set(headlines))[:50])
+            log(f"Reuters: found {len(headlines)} conflict headlines")
+            return result
+    except Exception as e:
+        log(f"Reuters scrape failed: {e}")
+    return ""
+
+
+def scrape_aljazeera():
+    """Scrape Al Jazeera for conflict news."""
+    try:
+        url = "https://www.aljazeera.com/tag/war-and-conflict/"
+        resp = requests.get(url, headers=HEADERS, timeout=30)
+        if resp.status_code == 200:
+            soup = BeautifulSoup(resp.text, "html.parser")
+            headlines = []
+            for tag in soup.find_all(["h2", "h3", "a"]):
+                text = tag.get_text(strip=True)
+                if len(text) > 25:
+                    headlines.append(text)
+            result = "\n".join(list(set(headlines))[:50])
+            log(f"Al Jazeera: found {len(headlines)} headlines")
+            return result
+    except Exception as e:
+        log(f"Al Jazeera scrape failed: {e}")
+    return ""
+
+
+# ── Groq AI Classification ──────────────────────────────────────────
+
+def ask_groq(messages, max_tokens=4096, retries=3):
+    """Send a request to Groq API with retry on rate limits."""
+    payload = {
+        "model": "llama-3.3-70b-versatile",
+        "messages": messages,
+        "temperature": 0.1,
+        "max_tokens": max_tokens
+    }
+    for attempt in range(retries):
+        try:
+            resp = requests.post(GROQ_URL, json=payload, timeout=120,
+                                 headers={"Authorization": f"Bearer {GROQ_API_KEY}",
+                                          "Content-Type": "application/json"})
+            if resp.status_code == 429:
+                wait = 10 * (attempt + 1)
+                log(f"Rate limited, waiting {wait}s (attempt {attempt+1}/{retries})...")
+                time.sleep(wait)
+                continue
+            resp.raise_for_status()
+            data = resp.json()
+            return data["choices"][0]["message"]["content"]
+        except Exception as e:
+            log(f"Groq API error: {e}")
+            if hasattr(resp, "text"):
+                log(f"Response: {resp.text[:300]}")
+            if attempt < retries - 1:
+                time.sleep(10)
     return None
 
 
-def classify_countries_batch(country_list):
-    """Ask Gemini to classify a batch of countries."""
-    countries_str = ", ".join(country_list)
+def classify_batch(country_batch, scraped_context):
+    """Ask Groq to classify a batch of countries using scraped context."""
+    countries_str = ", ".join(country_batch)
 
-    prompt = f"""You are a geopolitical analyst. For each country listed below, classify its current military/conflict status into EXACTLY ONE of these categories:
+    messages = [
+        {
+            "role": "system",
+            "content": """You are a geopolitical analyst. You classify countries' conflict status based on provided source data from ACLED, CFR, ICG, Reuters, and Al Jazeera. Be accurate and conservative — only classify a country as in conflict if the evidence clearly supports it.
 
-1. "declared_war" — The country has formally declared war on another nation, or another nation has formally declared war on it
-2. "active_conflict" — The country is actively engaged in armed conflict (war, civil war, insurgency, military operations) but without a formal war declaration
-3. "proxy_involvement" — The country is significantly involved in a conflict through military aid, weapons supply, troop deployment, or funding to belligerents in another country's war
-4. "tensions" — The country has active military standoffs, border disputes, or significant military buildups that could escalate to conflict
-5. "peaceful" — The country is not involved in any significant armed conflicts or military tensions
+Categories:
+1. "declared_war" — Formal declaration of war exists
+2. "active_conflict" — Actively engaged in armed conflict (war, civil war, insurgency, direct military operations) without formal declaration
+3. "proxy_involvement" — Significantly involved through military aid, weapons supply, troop deployment, or funding to belligerents in another country's war
+4. "tensions" — Active military standoffs, border disputes, or significant military buildups
+5. "peaceful" — Not involved in significant armed conflicts
 
-For each country, also provide:
-- A brief description of why it has that status (1-2 sentences)
-- The specific conflict name if applicable
-- The country's role in the conflict
+Respond ONLY with valid JSON, no markdown, no explanation."""
+        },
+        {
+            "role": "user",
+            "content": f"""Based on the following current conflict data from multiple sources, classify each country listed below.
 
-IMPORTANT: Use current information from today's date. Base your classifications on actual ongoing conflicts, not historical ones.
+=== SOURCE DATA ===
+{scraped_context[:12000]}
+=== END SOURCE DATA ===
 
 Countries to classify: {countries_str}
 
-Respond in this EXACT JSON format (no markdown, no code blocks, just raw JSON):
+For each country respond with this exact JSON structure:
 {{
   "countries": [
     {{
       "name": "CountryName",
-      "status": "one_of_the_five_categories",
+      "status": "category_string",
       "conflicts": [
         {{
           "name": "Conflict Name",
           "role": "Country's role",
-          "description": "Brief description of involvement"
+          "description": "1-2 sentence explanation"
         }}
       ]
     }}
   ]
 }}
 
-If a country is peaceful, set conflicts to an empty array [].
-"""
-    return ask_gemini(prompt)
+If peaceful, set conflicts to []. Classify ALL {len(country_batch)} countries listed above."""
+        }
+    ]
+
+    return ask_groq(messages, max_tokens=4096)
 
 
-def parse_gemini_response(text):
-    """Parse the JSON from Gemini's response."""
+def parse_response(text):
+    """Parse JSON from Groq response."""
     if not text:
         return None
-
-    # Try to extract JSON from the response
     text = text.strip()
-
-    # Remove markdown code blocks if present
-    if text.startswith("```"):
-        lines = text.split("\n")
-        # Remove first and last lines (``` markers)
-        lines = [l for l in lines if not l.strip().startswith("```")]
-        text = "\n".join(lines)
-
+    # Remove markdown code blocks
+    text = re.sub(r'^```(?:json)?\s*', '', text)
+    text = re.sub(r'\s*```$', '', text)
     try:
         return json.loads(text)
     except json.JSONDecodeError:
-        # Try to find JSON object in the text
         start = text.find("{")
         end = text.rfind("}") + 1
         if start >= 0 and end > start:
@@ -185,87 +293,141 @@ def parse_gemini_response(text):
     return None
 
 
+# ── Main ─────────────────────────────────────────────────────────────
+
 def run_update():
     log("=" * 60)
-    log("Starting War Map AI-powered update")
+    log("Starting War Map AI-powered update (Groq + multi-source)")
 
-    # Load existing data
+    # Step 1: Scrape sources
+    log("Scraping conflict sources...")
+    sources = []
+
+    cfr = scrape_cfr()
+    if cfr:
+        sources.append(f"=== CFR GLOBAL CONFLICT TRACKER ===\n{cfr}")
+
+    acled = scrape_acled()
+    if acled:
+        sources.append(f"=== ACLED CONFLICT WATCHLIST ===\n{acled}")
+
+    icg = scrape_icg()
+    if icg:
+        sources.append(f"=== INTERNATIONAL CRISIS GROUP ===\n{icg}")
+
+    reuters = scrape_reuters_conflicts()
+    if reuters:
+        sources.append(f"=== REUTERS CONFLICT HEADLINES ===\n{reuters}")
+
+    aljazeera = scrape_aljazeera()
+    if aljazeera:
+        sources.append(f"=== AL JAZEERA WAR & CONFLICT ===\n{aljazeera}")
+
+    if not sources:
+        log("ERROR: No sources could be scraped. Aborting update.")
+        return
+
+    scraped_context = "\n\n".join(sources)
+    log(f"Total scraped context: {len(scraped_context)} characters from {len(sources)} sources")
+
+    # Step 2: Load existing data
     with open(DATA_FILE, "r", encoding="utf-8") as f:
         existing_data = json.load(f)
 
-    # Split countries into batches of ~40 (to stay within token limits)
+    # Step 3: Classify in batches
     country_names = list(ALL_COUNTRIES.values())
-    iso_by_name = {v.lower(): k for k, v in ALL_COUNTRIES.items()}
-    batch_size = 40
-    batches = [country_names[i:i+batch_size] for i in range(0, len(country_names), batch_size)]
+    iso_by_name = {}
+    for k, v in ALL_COUNTRIES.items():
+        iso_by_name[v.lower()] = k
+        # Add common aliases
+        if v == "United States":
+            iso_by_name["us"] = k
+            iso_by_name["usa"] = k
+            iso_by_name["united states of america"] = k
+        elif v == "United Kingdom":
+            iso_by_name["uk"] = k
+        elif v == "Democratic Republic of Congo":
+            iso_by_name["drc"] = k
+            iso_by_name["dr congo"] = k
+        elif v == "Republic of Congo":
+            iso_by_name["congo"] = k
+        elif v == "Ivory Coast":
+            iso_by_name["cote d'ivoire"] = k
+            iso_by_name["côte d'ivoire"] = k
 
+    batch_size = 35
+    batches = [country_names[i:i+batch_size] for i in range(0, len(country_names), batch_size)]
     all_results = {}
+
     for i, batch in enumerate(batches):
-        log(f"Processing batch {i+1}/{len(batches)} ({len(batch)} countries)...")
-        response_text = classify_countries_batch(batch)
+        log(f"Classifying batch {i+1}/{len(batches)} ({len(batch)} countries)...")
+        response_text = classify_batch(batch, scraped_context)
 
         if not response_text:
-            log(f"Batch {i+1} failed — keeping existing data for these countries")
+            log(f"  Batch {i+1} failed — keeping existing data")
             continue
 
-        parsed = parse_gemini_response(response_text)
+        parsed = parse_response(response_text)
         if not parsed or "countries" not in parsed:
-            log(f"Batch {i+1} parse failed — response: {response_text[:300]}")
+            log(f"  Batch {i+1} parse failed. Response preview: {response_text[:200]}")
             continue
 
         for country in parsed["countries"]:
             name = country.get("name", "")
             iso = iso_by_name.get(name.lower())
             if not iso:
-                # Try partial matching
-                for full_name, code in ALL_COUNTRIES.items():
-                    pass
+                # Fuzzy match
                 for cname, ccode in iso_by_name.items():
                     if name.lower() in cname or cname in name.lower():
                         iso = ccode
                         break
             if iso:
                 all_results[iso] = country
-                log(f"  {name}: {country.get('status', '?')}")
+                status = country.get("status", "?")
+                if status != "peaceful":
+                    log(f"  {name}: {status}")
 
-        # Rate limiting — be nice to the API
+        # Rate limit: Groq free tier has TPM limits
         if i < len(batches) - 1:
-            time.sleep(5)
+            time.sleep(15)
 
-    # Merge results into existing data
-    updated_count = 0
+    log(f"Classified {len(all_results)} countries total")
+
+    # Step 4: Merge results
+    valid_statuses = {"declared_war", "active_conflict", "proxy_involvement", "tensions", "peaceful"}
+    updated = 0
+
     for iso, result in all_results.items():
         status = result.get("status", "peaceful")
-        if status not in ["declared_war", "active_conflict", "proxy_involvement", "tensions", "peaceful"]:
+        if status not in valid_statuses:
             status = "peaceful"
 
         conflicts = []
         for c in result.get("conflicts", []):
-            conflict_entry = {
-                "name": c.get("name", "Unknown"),
+            conflict_name = c.get("name", "Unknown Conflict")
+            conflicts.append({
+                "name": conflict_name,
                 "role": c.get("role", ""),
                 "description": c.get("description", ""),
                 "sources": [
-                    {"title": "AI-classified via Google Search grounding", "url": "https://www.google.com/search?q=" + c.get("name", "").replace(" ", "+")}
+                    {"title": f"Search: {conflict_name}",
+                     "url": "https://www.google.com/search?q=" + conflict_name.replace(" ", "+") + "+2026"}
                 ]
-            }
-            conflicts.append(conflict_entry)
+            })
 
-        country_name = ALL_COUNTRIES.get(iso, result.get("name", "Unknown"))
         existing_data["countries"][iso] = {
-            "name": country_name,
+            "name": ALL_COUNTRIES.get(iso, result.get("name", "Unknown")),
             "status": status,
             "conflicts": conflicts
         }
-        updated_count += 1
+        updated += 1
 
     existing_data["last_updated"] = datetime.now().strftime("%Y-%m-%d")
 
-    # Save updated data
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(existing_data, f, indent=2, ensure_ascii=False)
 
-    log(f"Updated {updated_count} countries")
+    log(f"Updated {updated} countries in conflict_data.json")
     log("Update complete")
     log("=" * 60)
 
