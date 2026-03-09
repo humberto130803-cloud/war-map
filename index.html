@@ -499,11 +499,17 @@
                     layer.on({
                         mouseover: function(e) {
                             const l = e.target;
-                            l.setStyle({ weight: 2, opacity: 1, fillOpacity: 0.8 });
+                            // Only highlight if this country matches the current filter (or no filter)
+                            const status = data ? data.status : null;
+                            if (currentFilter === 'all' || status === currentFilter) {
+                                l.setStyle({ weight: 2, opacity: 1, fillOpacity: 0.8 });
+                            }
                             l.bringToFront();
                         },
                         mouseout: function(e) {
-                            geojsonLayer.resetStyle(e.target);
+                            // Reset to the filter-aware style, not the base style
+                            const l = e.target;
+                            l.setStyle(filterStyle(feature));
                         },
                         click: function(e) {
                             const popup = L.popup({ maxWidth: 380, maxHeight: 420 })

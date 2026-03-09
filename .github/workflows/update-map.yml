@@ -23,9 +23,11 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install requests
 
-      - name: Run updater
+      - name: Run AI-powered updater
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python updater.py
 
       - name: Build HTML with embedded data
