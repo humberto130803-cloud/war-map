@@ -1,0 +1,4 @@
+updater.log
+__pycache__/
+*.pyc
+setup_scheduler.bat
