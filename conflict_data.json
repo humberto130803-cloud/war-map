@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-28",
+  "last_updated": "2026-07-29",
   "categories": {
     "declared_war": {
       "color": "#DC2626",
@@ -35,7 +35,7 @@
         {
           "name": "Taliban insurgency",
           "role": "Country affected",
-          "description": "Afghanistan is experiencing ongoing armed conflict with the Taliban, with the group controlling large areas of the country. The conflict has resulted in significant violence and instability.",
+          "description": "Afghanistan is experiencing ongoing conflict with the Taliban, with the group waging an insurgency against the government.",
           "sources": [
             {
               "title": "Search: Taliban insurgency",
@@ -50,13 +50,13 @@
       "status": "active_conflict",
       "conflicts": [
         {
-          "name": "Militancy in the Region",
-          "role": "Government",
-          "description": "The country's military is capitalizing on foreign support to divide the resistance and battling militant groups in the region.",
+          "name": "Militancy and Insurgency",
+          "role": "Affected country",
+          "description": "Pakistan is battling rising militancy and faces internal insurgency, contributing to its active conflict status.",
           "sources": [
             {
-              "title": "Search: Militancy in the Region",
-              "url": "https://www.google.com/search?q=Militancy+in+the+Region+2026"
+              "title": "Search: Militancy and Insurgency",
+              "url": "https://www.google.com/search?q=Militancy+and+Insurgency+2026"
             }
           ]
         }
@@ -67,13 +67,13 @@
       "status": "active_conflict",
       "conflicts": [
         {
-          "name": "Ukraine Conflict",
+          "name": "Ukraine-Russia Conflict",
           "role": "Belligerent",
-          "description": "The country is facing military and diplomatic pressure to cede the Donbas region, and is engaged in an ongoing conflict with Ukraine.",
+          "description": "Russia is actively engaged in a conflict with Ukraine, including military operations and diplomatic tensions.",
           "sources": [
             {
-              "title": "Search: Ukraine Conflict",
-              "url": "https://www.google.com/search?q=Ukraine+Conflict+2026"
+              "title": "Search: Ukraine-Russia Conflict",
+              "url": "https://www.google.com/search?q=Ukraine-Russia+Conflict+2026"
             }
           ]
         }
@@ -84,13 +84,13 @@
       "status": "active_conflict",
       "conflicts": [
         {
-          "name": "Ukrainian-Russian Conflict",
+          "name": "War in Donbas",
           "role": "Belligerent",
-          "description": "Ongoing conflict with Russian-backed separatists in the Donbas region, with significant military involvement and diplomatic pressure.",
+          "description": "Ukraine is engaged in a conflict with Russian-backed separatists in the Donbas region, with Russia providing military support to the separatists.",
           "sources": [
             {
-              "title": "Search: Ukrainian-Russian Conflict",
-              "url": "https://www.google.com/search?q=Ukrainian-Russian+Conflict+2026"
+              "title": "Search: War in Donbas",
+              "url": "https://www.google.com/search?q=War+in+Donbas+2026"
             }
           ]
         }
@@ -103,7 +103,7 @@
         {
           "name": "Israeli-Palestinian Conflict",
           "role": "Belligerent",
-          "description": "Israel is engaged in an ongoing conflict with Palestinian groups, involving military operations, settlements, and border disputes. The conflict has led to periodic outbreaks of violence and diplomatic tensions.",
+          "description": "Israel is engaged in a longstanding conflict with Palestinian groups, involving periodic outbreaks of violence, military operations, and diplomatic tensions. The conflict is fueled by disputes over territory, borders, and the status of Jerusalem.",
           "sources": [
             {
               "title": "Search: Israeli-Palestinian Conflict",
@@ -114,7 +114,7 @@
         {
           "name": "Iran-Israel Conflict",
           "role": "Belligerent",
-          "description": "Israel is involved in a conflict with Iran, with both countries engaging in proxy wars, cyberattacks, and diplomatic confrontations.",
+          "description": "Israel is also involved in a conflict with Iran, which supports various militant groups in the region, including Hezbollah and Hamas. The conflict involves proxy wars, cyberattacks, and diplomatic tensions.",
           "sources": [
             {
               "title": "Search: Iran-Israel Conflict",
@@ -131,7 +131,7 @@
         {
           "name": "Israeli-Palestinian Conflict",
           "role": "Belligerent",
-          "description": "Ongoing conflict with Israel over territorial claims, sovereignty, and self-determination, with periodic clashes and military operations.",
+          "description": "Palestine is engaged in a longstanding conflict with Israel over territory, sovereignty, and self-determination.",
           "sources": [
             {
               "title": "Search: Israeli-Palestinian Conflict",
@@ -148,7 +148,7 @@
         {
           "name": "Iran-Israel Conflict",
           "role": "Involved party",
-          "description": "Iran is engaged in an ongoing conflict with Israel, with frequent clashes and attacks.",
+          "description": "Iran is engaged in an ongoing conflict with Israel, with periodic clashes and tensions between the two countries, and support for proxy groups in the region.",
           "sources": [
             {
               "title": "Search: Iran-Israel Conflict",
@@ -159,7 +159,7 @@
         {
           "name": "Iran-United States Conflict",
           "role": "Involved party",
-          "description": "Iran is engaged in an ongoing conflict with the United States, with frequent clashes and attacks.",
+          "description": "Iran is engaged in an ongoing conflict with the United States, with periodic clashes and tensions between the two countries, and significant economic sanctions.",
           "sources": [
             {
               "title": "Search: Iran-United States Conflict",
@@ -175,12 +175,23 @@
       "conflicts": [
         {
           "name": "Lebanon-Israel Conflict",
-          "role": "Belligerent",
-          "description": "Lebanon is involved in an ongoing conflict with Israel, with both countries engaging in military operations and diplomatic confrontations over issues like border disputes and militant activity.",
+          "role": "Host country",
+          "description": "Lebanon is involved in a conflict with Israel, which has led to periodic outbreaks of violence and military operations. The conflict involves disputes over territory, borders, and the presence of militant groups.",
           "sources": [
             {
               "title": "Search: Lebanon-Israel Conflict",
               "url": "https://www.google.com/search?q=Lebanon-Israel+Conflict+2026"
+            }
+          ]
+        },
+        {
+          "name": "Syrian Civil War Spillover",
+          "role": "Host country",
+          "description": "Lebanon is also affected by the spillover of the Syrian Civil War, with various militant groups operating within its borders. The conflict involves sectarian violence, refugee crises, and diplomatic tensions.",
+          "sources": [
+            {
+              "title": "Search: Syrian Civil War Spillover",
+              "url": "https://www.google.com/search?q=Syrian+Civil+War+Spillover+2026"
             }
           ]
         }
@@ -191,13 +202,13 @@
       "status": "active_conflict",
       "conflicts": [
         {
-          "name": "Sudanese Conflict",
-          "role": "Government",
-          "description": "The country is engaged in an ongoing conflict, with various factions and militant groups involved in the conflict.",
+          "name": "Darfur Conflict and Militancy",
+          "role": "Affected country",
+          "description": "Sudan faces ongoing conflicts in Darfur and battles with rising militancy, contributing to its active conflict status.",
           "sources": [
             {
-              "title": "Search: Sudanese Conflict",
-              "url": "https://www.google.com/search?q=Sudanese+Conflict+2026"
+              "title": "Search: Darfur Conflict and Militancy",
+              "url": "https://www.google.com/search?q=Darfur+Conflict+and+Militancy+2026"
             }
           ]
         }
@@ -210,7 +221,7 @@
         {
           "name": "Myanmar Civil War",
           "role": "Host country",
-          "description": "Myanmar is experiencing an ongoing civil war, with various factions vying for control and engaging in armed conflict. The conflict involves multiple external actors, including foreign governments and militant groups.",
+          "description": "Myanmar is experiencing an ongoing civil war, involving various armed groups, including ethnic militias and separatist rebels. The conflict involves disputes over territory, resources, and political power.",
           "sources": [
             {
               "title": "Search: Myanmar Civil War",
@@ -232,7 +243,7 @@
         {
           "name": "Mali Insurgency",
           "role": "Host country",
-          "description": "Mali is experiencing an ongoing insurgency, with militant groups engaging in armed conflict against government forces and external actors. The conflict involves multiple factions, including jihadist groups and separatist movements.",
+          "description": "Mali is experiencing an ongoing insurgency, involving various armed groups, including jihadist militants and separatist rebels. The conflict involves disputes over territory, resources, and political power.",
           "sources": [
             {
               "title": "Search: Mali Insurgency",
@@ -249,7 +260,7 @@
         {
           "name": "Jihadist insurgency",
           "role": "Country affected",
-          "description": "Burkina Faso is experiencing an ongoing jihadist insurgency, with militant groups carrying out attacks against the government and civilians.",
+          "description": "Burkina Faso is experiencing ongoing conflict with jihadist groups, including ISIS and al-Qaeda affiliates.",
           "sources": [
             {
               "title": "Search: Jihadist insurgency",
@@ -265,8 +276,8 @@
       "conflicts": [
         {
           "name": "Militancy in the Sahel Region",
-          "role": "Government",
-          "description": "The country is battling rising militancy that risks spreading beyond the frontiers, with militant groups active in the region.",
+          "role": "Affected country",
+          "description": "Niger is facing battles with rising militancy that risks spreading beyond its frontiers. The country is part of the broader Sahel region conflict.",
           "sources": [
             {
               "title": "Search: Militancy in the Sahel Region",
@@ -283,7 +294,7 @@
         {
           "name": "Insurgency",
           "role": "Country affected",
-          "description": "Chad is experiencing an ongoing insurgency, with militant groups carrying out attacks against the government and civilians.",
+          "description": "Chad is experiencing ongoing conflict with insurgent groups, including those linked to Libya.",
           "sources": [
             {
               "title": "Search: Insurgency",
@@ -298,13 +309,13 @@
       "status": "active_conflict",
       "conflicts": [
         {
-          "name": "Ongoing conflict in eastern DRC",
+          "name": "Kivu conflict",
           "role": "Country affected",
-          "description": "The Democratic Republic of Congo is experiencing an ongoing conflict in the eastern part of the country, with multiple armed groups vying for control and significant violence against civilians.",
+          "description": "The Democratic Republic of Congo is experiencing ongoing conflict in the Kivu region, involving various armed groups.",
           "sources": [
             {
-              "title": "Search: Ongoing conflict in eastern DRC",
-              "url": "https://www.google.com/search?q=Ongoing+conflict+in+eastern+DRC+2026"
+              "title": "Search: Kivu conflict",
+              "url": "https://www.google.com/search?q=Kivu+conflict+2026"
             }
           ]
         }
@@ -321,8 +332,8 @@
       "conflicts": [
         {
           "name": "Al-Shabaab Insurgency",
-          "role": "Government",
-          "description": "The country is engaged in an ongoing conflict with the Al-Shabaab militant group, which has been active in the region for years.",
+          "role": "Affected country",
+          "description": "Somalia is engaged in an ongoing conflict with the Al-Shabaab insurgency, which controls parts of the country.",
           "sources": [
             {
               "title": "Search: Al-Shabaab Insurgency",
@@ -344,7 +355,7 @@
         {
           "name": "Yemen Civil War",
           "role": "Belligerent",
-          "description": "Ongoing civil war between the Houthi rebels and the government, with significant military involvement from the Saudi-led coalition and humanitarian crises.",
+          "description": "Yemen is engaged in a civil war between the government and Houthi rebels, with a Saudi-led coalition providing military support to the government.",
           "sources": [
             {
               "title": "Search: Yemen Civil War",
@@ -361,7 +372,7 @@
         {
           "name": "Syrian Civil War",
           "role": "Belligerent",
-          "description": "Ongoing civil war with multiple factions involved, including government forces, rebels, and extremist groups. The conflict has resulted in significant humanitarian crises and displacement.",
+          "description": "Syria is engaged in a civil war involving multiple factions, including the government, rebels, and extremist groups. The conflict has resulted in significant humanitarian suffering and displacement.",
           "sources": [
             {
               "title": "Search: Syrian Civil War",
@@ -378,7 +389,7 @@
         {
           "name": "Iraq Insurgency",
           "role": "Host country",
-          "description": "Iraq is experiencing ongoing insurgency and armed conflict, with various groups vying for control. The conflict involves multiple factions, including government forces, militant groups, and external actors.",
+          "description": "Iraq is experiencing ongoing insurgency and sectarian violence, with various armed groups operating within its borders. The conflict involves multiple factions, including government forces, militias, and extremist groups.",
           "sources": [
             {
               "title": "Search: Iraq Insurgency",
@@ -394,8 +405,8 @@
       "conflicts": [
         {
           "name": "Boko Haram Insurgency",
-          "role": "Government",
-          "description": "The country is engaged in an ongoing conflict with the Boko Haram militant group, which has been active in the region for years.",
+          "role": "Affected country",
+          "description": "Nigeria is actively engaged in an armed conflict with the Boko Haram insurgency, which has been ongoing for years.",
           "sources": [
             {
               "title": "Search: Boko Haram Insurgency",
@@ -412,7 +423,7 @@
         {
           "name": "Gang Violence",
           "role": "Government",
-          "description": "Haiti is experiencing ongoing gang violence, with frequent clashes and attacks.",
+          "description": "Haiti is experiencing ongoing gang violence, with frequent clashes and kidnappings, and a significant challenge to government authority.",
           "sources": [
             {
               "title": "Search: Gang Violence",
@@ -427,13 +438,13 @@
       "status": "active_conflict",
       "conflicts": [
         {
-          "name": "South Sudanese Civil War",
-          "role": "Government",
-          "description": "The country is engaged in an ongoing civil war, with various factions and militant groups involved in the conflict.",
+          "name": "Civil War",
+          "role": "Affected country",
+          "description": "South Sudan is experiencing an ongoing civil war, with various factions vying for control.",
           "sources": [
             {
-              "title": "Search: South Sudanese Civil War",
-              "url": "https://www.google.com/search?q=South+Sudanese+Civil+War+2026"
+              "title": "Search: Civil War",
+              "url": "https://www.google.com/search?q=Civil+War+2026"
             }
           ]
         }
@@ -444,13 +455,13 @@
       "status": "active_conflict",
       "conflicts": [
         {
-          "name": "Anglophone separatist conflict",
+          "name": "Anglophone crisis",
           "role": "Country affected",
-          "description": "Cameroon is experiencing an ongoing conflict between the government and Anglophone separatists, with violence and instability in the affected regions.",
+          "description": "Cameroon is experiencing ongoing conflict with separatist groups in the Anglophone region.",
           "sources": [
             {
-              "title": "Search: Anglophone separatist conflict",
-              "url": "https://www.google.com/search?q=Anglophone+separatist+conflict+2026"
+              "title": "Search: Anglophone crisis",
+              "url": "https://www.google.com/search?q=Anglophone+crisis+2026"
             }
           ]
         }
@@ -471,13 +482,13 @@
       "status": "proxy_involvement",
       "conflicts": [
         {
-          "name": "Iran-Israel-USA Conflict",
+          "name": "Iran-Israel Conflict",
           "role": "Supporter of Israel",
-          "description": "Provides military aid and support to Israel in the conflict against Iran and its proxies in the region.",
+          "description": "The US is involved in the Iran-Israel conflict, providing military support to Israel and imposing economic sanctions on Iran.",
           "sources": [
             {
-              "title": "Search: Iran-Israel-USA Conflict",
-              "url": "https://www.google.com/search?q=Iran-Israel-USA+Conflict+2026"
+              "title": "Search: Iran-Israel Conflict",
+              "url": "https://www.google.com/search?q=Iran-Israel+Conflict+2026"
             }
           ]
         }
@@ -490,8 +501,20 @@
     },
     "FRA": {
       "name": "France",
-      "status": "peaceful",
-      "conflicts": []
+      "status": "active_conflict",
+      "conflicts": [
+        {
+          "name": "Operation Barkhane",
+          "role": "Intervening party",
+          "description": "France is engaged in an ongoing military operation in the Sahel region, targeting Islamist militants and providing support to local governments.",
+          "sources": [
+            {
+              "title": "Search: Operation Barkhane",
+              "url": "https://www.google.com/search?q=Operation+Barkhane+2026"
+            }
+          ]
+        }
+      ]
     },
     "DEU": {
       "name": "Germany",
@@ -500,21 +523,33 @@
     },
     "POL": {
       "name": "Poland",
-      "status": "peaceful",
-      "conflicts": []
+      "status": "tensions",
+      "conflicts": [
+        {
+          "name": "Ukraine-Russia Conflict",
+          "role": "Supporting Ukraine",
+          "description": "Poland is under tensions due to its support for Ukraine in the conflict with Russia, including military and diplomatic pressure on Russia to cede the Donbas region.",
+          "sources": [
+            {
+              "title": "Search: Ukraine-Russia Conflict",
+              "url": "https://www.google.com/search?q=Ukraine-Russia+Conflict+2026"
+            }
+          ]
+        }
+      ]
     },
     "TUR": {
       "name": "Turkey",
       "status": "active_conflict",
       "conflicts": [
         {
-          "name": "Turkey-Kurdish Conflict",
+          "name": "Turkey-PKK Conflict",
           "role": "Belligerent",
-          "description": "Ongoing conflict with armed Kurdish groups, including the PKK, with clashes and military operations along the border with Syria and Iraq.",
+          "description": "Turkey is engaged in a conflict with the Kurdistan Workers' Party (PKK), a militant group seeking autonomy for Kurds in Turkey.",
           "sources": [
             {
-              "title": "Search: Turkey-Kurdish Conflict",
-              "url": "https://www.google.com/search?q=Turkey-Kurdish+Conflict+2026"
+              "title": "Search: Turkey-PKK Conflict",
+              "url": "https://www.google.com/search?q=Turkey-PKK+Conflict+2026"
             }
           ]
         }
@@ -526,8 +561,8 @@
       "conflicts": [
         {
           "name": "Yemen Conflict",
-          "role": "Supporter of the Yemeni Government",
-          "description": "The country is involved in the conflict in Yemen through its support of the Yemeni government, providing military aid and assistance.",
+          "role": "Supporting government",
+          "description": "Saudi Arabia is involved in the Yemen conflict through military aid, weapons supply, and troop deployment, supporting the government against Houthi rebels.",
           "sources": [
             {
               "title": "Search: Yemen Conflict",
@@ -544,7 +579,7 @@
         {
           "name": "Yemen Civil War",
           "role": "Supporter of the Saudi-led coalition",
-          "description": "Provides military aid and support to the Saudi-led coalition in the conflict against Houthi rebels in Yemen.",
+          "description": "The UAE is involved in the Yemen Civil War as part of a Saudi-led coalition, providing military support to the government of Yemen against Houthi rebels.",
           "sources": [
             {
               "title": "Search: Yemen Civil War",
@@ -560,8 +595,8 @@
       "conflicts": [
         {
           "name": "North Korea-South Korea Tensions",
-          "role": "Party to the dispute",
-          "description": "North Korea is engaged in a tense standoff with South Korea, with both countries engaging in military buildups and diplomatic confrontations over issues like missile tests and territorial disputes.",
+          "role": "Belligerent",
+          "description": "North Korea is involved in a longstanding dispute with South Korea, involving territorial claims, missile tests, and nuclear proliferation. The tensions involve diplomatic rhetoric, military buildups, and economic sanctions.",
           "sources": [
             {
               "title": "Search: North Korea-South Korea Tensions",
@@ -571,8 +606,8 @@
         },
         {
           "name": "North Korea-Japan Tensions",
-          "role": "Party to the dispute",
-          "description": "North Korea is involved in a tense standoff with Japan, with both countries engaging in military buildups and diplomatic confrontations over issues like missile tests and territorial disputes.",
+          "role": "Belligerent",
+          "description": "North Korea is also involved in a dispute with Japan over territorial claims and historical grievances. The tensions involve diplomatic rhetoric, military buildups, and economic sanctions.",
           "sources": [
             {
               "title": "Search: North Korea-Japan Tensions",
@@ -589,7 +624,7 @@
         {
           "name": "Taiwan Strait tensions",
           "role": "Country involved",
-          "description": "China has a longstanding dispute with Taiwan, with periodic outbreaks of tension and a significant military buildup.",
+          "description": "China has ongoing tensions with Taiwan, with the US also involved in the region.",
           "sources": [
             {
               "title": "Search: Taiwan Strait tensions",
@@ -605,8 +640,8 @@
       "conflicts": [
         {
           "name": "Cross-Strait Tensions",
-          "role": "Involved party",
-          "description": "Ongoing tensions with China over sovereignty and territorial claims, with a significant military buildup and diplomatic pressure.",
+          "role": "Party to the dispute",
+          "description": "Taiwan is involved in a longstanding dispute with China over its sovereignty, with China claiming Taiwan as its own territory and Taiwan maintaining its independence.",
           "sources": [
             {
               "title": "Search: Cross-Strait Tensions",
@@ -621,24 +656,24 @@
       "status": "active_conflict",
       "conflicts": [
         {
-          "name": "Tigray War",
-          "role": "Government",
-          "description": "Ethiopia is engaged in an ongoing conflict with the Tigray People's Liberation Front, with frequent clashes and attacks.",
+          "name": "Eritrea-Ethiopia Border Conflict",
+          "role": "Involved party",
+          "description": "Ethiopia has a longstanding border conflict with Eritrea, with periodic clashes and tensions between the two countries.",
           "sources": [
             {
-              "title": "Search: Tigray War",
-              "url": "https://www.google.com/search?q=Tigray+War+2026"
+              "title": "Search: Eritrea-Ethiopia Border Conflict",
+              "url": "https://www.google.com/search?q=Eritrea-Ethiopia+Border+Conflict+2026"
             }
           ]
         },
         {
-          "name": "Eritrea-Ethiopia Border Dispute",
-          "role": "Involved party",
-          "description": "Ethiopia has a longstanding border dispute with Eritrea, with ongoing tensions and a significant military presence.",
+          "name": "Tigray War",
+          "role": "Government",
+          "description": "Ethiopia is engaged in an ongoing conflict with the Tigray People's Liberation Front, with frequent attacks and military operations.",
           "sources": [
             {
-              "title": "Search: Eritrea-Ethiopia Border Dispute",
-              "url": "https://www.google.com/search?q=Eritrea-Ethiopia+Border+Dispute+2026"
+              "title": "Search: Tigray War",
+              "url": "https://www.google.com/search?q=Tigray+War+2026"
             }
           ]
         }
@@ -646,16 +681,27 @@
     },
     "ERI": {
       "name": "Eritrea",
-      "status": "tensions",
+      "status": "active_conflict",
       "conflicts": [
         {
-          "name": "Eritrea-Ethiopia Border Dispute",
+          "name": "Eritrea-Ethiopia Border Conflict",
           "role": "Involved party",
-          "description": "Eritrea has a longstanding border dispute with Ethiopia, with ongoing tensions and a significant military presence.",
+          "description": "Eritrea has a longstanding border conflict with Ethiopia, with periodic clashes and tensions between the two countries.",
           "sources": [
             {
-              "title": "Search: Eritrea-Ethiopia Border Dispute",
-              "url": "https://www.google.com/search?q=Eritrea-Ethiopia+Border+Dispute+2026"
+              "title": "Search: Eritrea-Ethiopia Border Conflict",
+              "url": "https://www.google.com/search?q=Eritrea-Ethiopia+Border+Conflict+2026"
+            }
+          ]
+        },
+        {
+          "name": "Djibouti-Eritrea Border Dispute",
+          "role": "Involved party",
+          "description": "Eritrea has a border dispute with Djibouti, with periodic clashes and tensions between the two countries.",
+          "sources": [
+            {
+              "title": "Search: Djibouti-Eritrea Border Dispute",
+              "url": "https://www.google.com/search?q=Djibouti-Eritrea+Border+Dispute+2026"
             }
           ]
         }
@@ -666,13 +712,13 @@
       "status": "active_conflict",
       "conflicts": [
         {
-          "name": "Kashmir Insurgency",
+          "name": "Kashmir Conflict",
           "role": "Government",
-          "description": "India is engaged in an ongoing conflict with militant groups in Kashmir, with frequent clashes and attacks.",
+          "description": "India is engaged in an ongoing conflict with separatist militants in Kashmir, with frequent attacks and military operations.",
           "sources": [
             {
-              "title": "Search: Kashmir Insurgency",
-              "url": "https://www.google.com/search?q=Kashmir+Insurgency+2026"
+              "title": "Search: Kashmir Conflict",
+              "url": "https://www.google.com/search?q=Kashmir+Conflict+2026"
             }
           ]
         }
@@ -684,8 +730,8 @@
       "conflicts": [
         {
           "name": "North Korea-South Korea Tensions",
-          "role": "Party to the dispute",
-          "description": "South Korea is engaged in a tense standoff with North Korea, with both countries engaging in military buildups and diplomatic confrontations over issues like missile tests and territorial disputes.",
+          "role": "Belligerent",
+          "description": "South Korea is involved in a longstanding dispute with North Korea, involving territorial claims, missile tests, and nuclear proliferation. The tensions involve diplomatic rhetoric, military buildups, and economic sanctions.",
           "sources": [
             {
               "title": "Search: North Korea-South Korea Tensions",
@@ -705,13 +751,13 @@
       "status": "active_conflict",
       "conflicts": [
         {
-          "name": "Militant Groups in the Philippines",
-          "role": "Government",
-          "description": "The country is engaged in an ongoing conflict with various militant groups, including those affiliated with extremist organizations.",
+          "name": "Insurgency and Militancy",
+          "role": "Affected country",
+          "description": "The Philippines is engaged in ongoing conflicts with insurgent and militant groups, contributing to its active conflict status.",
           "sources": [
             {
-              "title": "Search: Militant Groups in the Philippines",
-              "url": "https://www.google.com/search?q=Militant+Groups+in+the+Philippines+2026"
+              "title": "Search: Insurgency and Militancy",
+              "url": "https://www.google.com/search?q=Insurgency+and+Militancy+2026"
             }
           ]
         }
@@ -784,7 +830,7 @@
         {
           "name": "Japan-North Korea Tensions",
           "role": "Party to the dispute",
-          "description": "Japan is involved in a tense standoff with North Korea, with both countries engaging in military buildups and diplomatic confrontations over issues like missile tests and territorial disputes.",
+          "description": "Japan is involved in a longstanding dispute with North Korea over territorial claims, missile tests, and nuclear proliferation. The tensions involve diplomatic rhetoric, military buildups, and economic sanctions.",
           "sources": [
             {
               "title": "Search: Japan-North Korea Tensions",
@@ -1020,7 +1066,7 @@
         {
           "name": "Nicaraguan Gang Violence",
           "role": "Government",
-          "description": "The government is struggling to rein in escalating gang violence, which has led to increased tensions in the country.",
+          "description": "The government is struggling to rein in escalating gang violence. This has led to increased tensions within the country.",
           "sources": [
             {
               "title": "Search: Nicaraguan Gang Violence",
@@ -1047,8 +1093,20 @@
     },
     "IDN": {
       "name": "Indonesia",
-      "status": "peaceful",
-      "conflicts": []
+      "status": "active_conflict",
+      "conflicts": [
+        {
+          "name": "Papua Conflict",
+          "role": "Government",
+          "description": "Indonesia is engaged in an ongoing conflict with separatist militants in Papua, with frequent attacks and military operations.",
+          "sources": [
+            {
+              "title": "Search: Papua Conflict",
+              "url": "https://www.google.com/search?q=Papua+Conflict+2026"
+            }
+          ]
+        }
+      ]
     },
     "KHM": {
       "name": "Cambodia",
@@ -1117,7 +1175,7 @@
         {
           "name": "Georgia-Russia Conflict",
           "role": "Involved party",
-          "description": "Georgia has a longstanding conflict with Russia over territorial claims, with ongoing tensions and a significant military presence.",
+          "description": "Georgia has a longstanding conflict with Russia, with ongoing tensions and a significant military presence in the breakaway regions of Abkhazia and South Ossetia.",
           "sources": [
             {
               "title": "Search: Georgia-Russia Conflict",
@@ -1134,7 +1192,7 @@
         {
           "name": "Nagorno-Karabakh conflict",
           "role": "Country involved",
-          "description": "Armenia has a longstanding dispute with Azerbaijan over the Nagorno-Karabakh region, with periodic outbreaks of violence and a significant military buildup.",
+          "description": "Armenia has ongoing tensions with Azerbaijan over the disputed Nagorno-Karabakh region.",
           "sources": [
             {
               "title": "Search: Nagorno-Karabakh conflict",
@@ -1151,7 +1209,7 @@
         {
           "name": "Nagorno-Karabakh conflict",
           "role": "Country involved",
-          "description": "Azerbaijan has a longstanding dispute with Armenia over the Nagorno-Karabakh region, with periodic outbreaks of violence and a significant military buildup.",
+          "description": "Azerbaijan has ongoing tensions with Armenia over the disputed Nagorno-Karabakh region.",
           "sources": [
             {
               "title": "Search: Nagorno-Karabakh conflict",
@@ -1168,8 +1226,20 @@
     },
     "MDA": {
       "name": "Moldova",
-      "status": "peaceful",
-      "conflicts": []
+      "status": "tensions",
+      "conflicts": [
+        {
+          "name": "Moldova-Transnistria Conflict",
+          "role": "Belligerent",
+          "description": "Moldova is involved in a longstanding dispute with the breakaway region of Transnistria, involving territorial claims and political tensions. The conflict involves diplomatic rhetoric, economic sanctions, and periodic outbreaks of violence.",
+          "sources": [
+            {
+              "title": "Search: Moldova-Transnistria Conflict",
+              "url": "https://www.google.com/search?q=Moldova-Transnistria+Conflict+2026"
+            }
+          ]
+        }
+      ]
     },
     "JOR": {
       "name": "Jordan",
@@ -1201,13 +1271,13 @@
       "status": "tensions",
       "conflicts": [
         {
-          "name": "Western Sahara Dispute",
-          "role": "Party to the dispute",
-          "description": "Morocco is involved in a tense dispute with the Polisario Front over the status of Western Sahara, with both sides engaging in diplomatic confrontations and occasional military clashes.",
+          "name": "Western Sahara Conflict",
+          "role": "Belligerent",
+          "description": "Morocco is involved in a longstanding dispute with the Polisario Front over the territory of Western Sahara, involving territorial claims and political tensions. The conflict involves diplomatic rhetoric, economic sanctions, and periodic outbreaks of violence.",
           "sources": [
             {
-              "title": "Search: Western Sahara Dispute",
-              "url": "https://www.google.com/search?q=Western+Sahara+Dispute+2026"
+              "title": "Search: Western Sahara Conflict",
+              "url": "https://www.google.com/search?q=Western+Sahara+Conflict+2026"
             }
           ]
         }
@@ -1230,7 +1300,7 @@
         {
           "name": "Libyan Civil War",
           "role": "Host country",
-          "description": "Libya is experiencing an ongoing civil war, with various factions vying for control and engaging in armed conflict. The conflict involves multiple external actors, including foreign governments and militant groups.",
+          "description": "Libya is experiencing an ongoing civil war, involving various armed groups, militias, and foreign interventions. The conflict involves disputes over territory, resources, and political power.",
           "sources": [
             {
               "title": "Search: Libyan Civil War",
@@ -1247,7 +1317,7 @@
         {
           "name": "Sinai Insurgency",
           "role": "Government",
-          "description": "Egypt is engaged in an ongoing conflict with militant groups in the Sinai Peninsula, with frequent clashes and attacks.",
+          "description": "Egypt is engaged in an ongoing conflict with Islamist militants in the Sinai Peninsula, with frequent attacks and military operations.",
           "sources": [
             {
               "title": "Search: Sinai Insurgency",
@@ -1299,7 +1369,7 @@
         {
           "name": "Mozambique Insurgency",
           "role": "Host country",
-          "description": "Mozambique is experiencing an ongoing insurgency, with militant groups engaging in armed conflict against government forces and external actors. The conflict involves multiple factions, including jihadist groups and separatist movements.",
+          "description": "Mozambique is experiencing an ongoing insurgency, involving various armed groups, including jihadist militants and separatist rebels. The conflict involves disputes over territory, resources, and political power.",
           "sources": [
             {
               "title": "Search: Mozambique Insurgency",
@@ -1351,7 +1421,7 @@
         {
           "name": "Civil war",
           "role": "Country affected",
-          "description": "The Central African Republic is experiencing an ongoing civil war, with multiple armed groups vying for control and significant violence against civilians.",
+          "description": "The Central African Republic is experiencing ongoing conflict between the government and various armed groups.",
           "sources": [
             {
               "title": "Search: Civil war",
@@ -1378,8 +1448,20 @@
     },
     "DJI": {
       "name": "Djibouti",
-      "status": "peaceful",
-      "conflicts": []
+      "status": "tensions",
+      "conflicts": [
+        {
+          "name": "Djibouti-Eritrea Border Dispute",
+          "role": "Involved party",
+          "description": "Djibouti has a border dispute with Eritrea, with periodic clashes and tensions between the two countries.",
+          "sources": [
+            {
+              "title": "Search: Djibouti-Eritrea Border Dispute",
+              "url": "https://www.google.com/search?q=Djibouti-Eritrea+Border+Dispute+2026"
+            }
+          ]
+        }
+      ]
     },
     "MRT": {
       "name": "Mauritania",
@@ -1467,8 +1549,8 @@
       "conflicts": [
         {
           "name": "Kosovo-Serbia Tensions",
-          "role": "Government",
-          "description": "The country has ongoing tensions with Kosovo, with periodic outbreaks of violence and diplomatic tensions.",
+          "role": "Claimant",
+          "description": "Serbia has ongoing tensions with Kosovo, including disputes over territory and sovereignty.",
           "sources": [
             {
               "title": "Search: Kosovo-Serbia Tensions",
